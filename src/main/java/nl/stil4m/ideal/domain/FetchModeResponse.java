@@ -1,4 +1,6 @@
-package nl.stil4m.ideal.responses;
+package nl.stil4m.ideal.domain;
+
+import nl.stil4m.ideal.responses.Response;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

@@ -1,6 +1,6 @@
 package nl.stil4m.ideal.requests;
 
-import nl.stil4m.ideal.responses.BanksResponse;
+import nl.stil4m.ideal.domain.BanksResponse;
 
 import java.util.Map;
 

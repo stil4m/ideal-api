@@ -1,6 +1,6 @@
 package nl.stil4m.ideal.requests;
 
-import nl.stil4m.ideal.responses.FetchModeResponse;
+import nl.stil4m.ideal.domain.FetchModeResponse;
 
 import java.util.Map;
 

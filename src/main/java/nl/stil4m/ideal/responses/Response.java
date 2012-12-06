@@ -1,5 +1,7 @@
 package nl.stil4m.ideal.responses;
 
+import nl.stil4m.ideal.domain.Item;
+
 import javax.xml.bind.annotation.XmlElement;
 
 public abstract class Response {

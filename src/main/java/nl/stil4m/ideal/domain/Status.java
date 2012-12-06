@@ -1,4 +1,4 @@
-package nl.stil4m.ideal.responses;
+package nl.stil4m.ideal.domain;
 
 public class Status {
     public static final String OPEN = "Open";

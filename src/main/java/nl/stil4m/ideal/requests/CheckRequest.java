@@ -1,6 +1,6 @@
 package nl.stil4m.ideal.requests;
 
-import nl.stil4m.ideal.responses.CheckResponse;
+import nl.stil4m.ideal.domain.CheckResponse;
 
 import java.util.Map;
 
