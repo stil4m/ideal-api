@@ -1,7 +1,6 @@
 package nl.stil4m.ideal.domain;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 public class Bank {
 
@@ -16,5 +15,13 @@ public class Bank {
     @XmlElement(name = "bank_name")
     public void setBankName(String bankName) {
         this.bankName = bankName;
+    }
+
+    public String getBankId() {
+        return bankId;
+    }
+
+    public String getBankName() {
+        return bankName;
     }
 }
