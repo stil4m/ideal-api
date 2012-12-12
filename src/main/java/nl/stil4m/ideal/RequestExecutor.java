@@ -1,5 +1,6 @@
 package nl.stil4m.ideal;
 
+import nl.stil4m.ideal.exceptions.FailedRequestException;
 import nl.stil4m.ideal.requests.Request;
 import nl.stil4m.ideal.responses.Response;
 import org.apache.http.HttpResponse;
@@ -27,7 +28,7 @@ public class RequestExecutor {
         this.url = url;
     }
 
-    protected  <T extends Response> T execute(Request<T> request) {
+    protected  <T extends Response> T execute(Request<T> request) throws FailedRequestException {
         try {
             HttpGet get = buildHttpRequest(request);
             DefaultHttpClient client = new DefaultHttpClient();
@@ -36,7 +37,11 @@ public class RequestExecutor {
             JAXBContext jaxbContext = JAXBContext.newInstance(request.getResponseClass());
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            return (T) jaxbUnmarshaller.unmarshal(httpResponse.getEntity().getContent());
+            T response = (T) jaxbUnmarshaller.unmarshal(httpResponse.getEntity().getContent());
+            if (!response.succeeded()) {
+                throw new FailedRequestException(request, response);
+            }
+            return response;
         } catch (ClientProtocolException e) {
             throw new RequestExecutorException(e);
         } catch (IOException e) {
