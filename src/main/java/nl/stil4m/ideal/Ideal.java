@@ -1,22 +1,26 @@
 package nl.stil4m.ideal;
 
+import nl.stil4m.ideal.requests.Request;
+import nl.stil4m.ideal.responses.Response;
+
 import java.util.Properties;
 
 public class Ideal {
 
-    private Properties properties;
+    private final Properties properties;
+    private final RequestExecutor requestExecutor;
 
-    public Ideal() {
+    public Ideal(RequestExecutor requestExecutor) {
+        this.requestExecutor = requestExecutor;
         this.properties = new IdealProperties();
     }
 
-    public Ideal(Properties properties) {
+    public Ideal(RequestExecutor requestExecutor, Properties properties) {
         this.properties = properties;
+        this.requestExecutor = requestExecutor;
     }
 
-    public RequestExecutor createExecutor() {
-        String scheme = properties.getProperty(IdealConstants.MOLLIE_IDEAL_SCHEME);
-        String url = properties.getProperty(IdealConstants.MOLLIE_IDEAL_URL);
-        return new RequestExecutor(scheme, url);
+    public <T extends Response> T execute(Request<T> request) {
+        return requestExecutor.execute(request);
     }
 }

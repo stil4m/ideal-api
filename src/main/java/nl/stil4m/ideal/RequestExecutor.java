@@ -27,7 +27,7 @@ public class RequestExecutor {
         this.url = url;
     }
 
-    public <T extends Response> T execute(Request<T> request) {
+    protected  <T extends Response> T execute(Request<T> request) {
         try {
             HttpGet get = buildHttpRequest(request);
             DefaultHttpClient client = new DefaultHttpClient();
