@@ -74,3 +74,10 @@ The table below will provide more infomation about the parameters that are used 
 
 ## Testing
 To interact with iDeal in a test mode, you can set `testMode` to `true` on every request.
+
+## Reference
+
+- [Mollie API reference][1]
+
+
+[1]: http://www.mollie.nl/support/documentatie/betaaldiensten/ideal
