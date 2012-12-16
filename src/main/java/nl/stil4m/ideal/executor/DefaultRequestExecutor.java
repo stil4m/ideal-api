@@ -1,6 +1,7 @@
-package nl.stil4m.ideal;
+package nl.stil4m.ideal.executor;
 
 import nl.stil4m.ideal.exceptions.FailedRequestException;
+import nl.stil4m.ideal.exceptions.RequestExecutorException;
 import nl.stil4m.ideal.requests.Request;
 import nl.stil4m.ideal.responses.Response;
 import org.apache.http.HttpResponse;
@@ -18,17 +19,17 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
 
-public class RequestExecutor {
+public class DefaultRequestExecutor implements RequestExecutor {
 
     private final String scheme;
     private final String url;
 
-    public RequestExecutor(String scheme, String url) {
+    public DefaultRequestExecutor(String scheme, String url) {
         this.scheme = scheme;
         this.url = url;
     }
 
-    protected  <T extends Response> T execute(Request<T> request) throws FailedRequestException {
+    public <T extends Response> T execute(Request<T> request) throws FailedRequestException {
         try {
             HttpGet get = buildHttpRequest(request);
             DefaultHttpClient client = new DefaultHttpClient();
@@ -52,7 +53,6 @@ public class RequestExecutor {
             throw new RequestExecutorException(e);
         }
     }
-
 
     private HttpGet buildHttpRequest(Request request) throws URISyntaxException {
         URIBuilder builder = new URIBuilder()

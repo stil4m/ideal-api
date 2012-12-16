@@ -1,6 +1,7 @@
 package nl.stil4m.ideal;
 
 import nl.stil4m.ideal.exceptions.FailedRequestException;
+import nl.stil4m.ideal.executor.RequestExecutor;
 import nl.stil4m.ideal.requests.Request;
 import nl.stil4m.ideal.responses.Response;
 
