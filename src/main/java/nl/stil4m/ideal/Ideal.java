@@ -9,20 +9,27 @@ import java.util.Properties;
 
 public class Ideal {
 
+    private final String partnerId;
     private final Properties properties;
     private final RequestExecutor requestExecutor;
 
-    public Ideal(RequestExecutor requestExecutor) {
+    public Ideal(String partnerId, RequestExecutor requestExecutor) {
+        this.partnerId = partnerId;
         this.requestExecutor = requestExecutor;
         this.properties = new IdealProperties();
     }
 
-    public Ideal(RequestExecutor requestExecutor, Properties properties) {
+    public Ideal(String partnerId, RequestExecutor requestExecutor, Properties properties) {
+        this.partnerId = partnerId;
         this.properties = properties;
         this.requestExecutor = requestExecutor;
     }
 
     public <T extends Response> T execute(Request<T> request) throws FailedRequestException {
         return requestExecutor.execute(request);
+    }
+
+    public String getPartnerId() {
+        return partnerId;
     }
 }
