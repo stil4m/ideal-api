@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<response>
+    <order>
+        <transaction_id>482d599bbcc7795727650330ad65fe9b</transaction_id>
+        <amount>123</amount>
+        <currency>EUR</currency>
+        <payed>true</payed>
+        <status>Success</status>
+        <consumer>
+            <consumerName>Hr J Janssen</consumerName>
+            <consumerAccount>P001234567</consumerAccount>
+            <consumerCity>Amsterdam</consumerCity>
+        </consumer>
+        <message>This iDEAL-order has successfully been payed for, and this is the first time you check it.</message>
+    </order>
+</response>

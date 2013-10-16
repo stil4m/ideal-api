@@ -1,5 +1,6 @@
-package nl.stil4m.ideal.domain;
+package nl.stil4m.ideal.responses;
 
+import nl.stil4m.ideal.domain.CheckOrder;
 import nl.stil4m.ideal.responses.Response;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -9,7 +10,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CheckResponse extends Response {
 
     private CheckOrder order;
-    private Consumer consumer;
 
     public CheckOrder getOrder() {
         return order;
@@ -20,12 +20,4 @@ public class CheckResponse extends Response {
         this.order = order;
     }
 
-    public Consumer getConsumer() {
-        return consumer;
-    }
-
-    @XmlElement(name = "consumer")
-    public void setConsumer(Consumer consumer) {
-        this.consumer = consumer;
-    }
 }

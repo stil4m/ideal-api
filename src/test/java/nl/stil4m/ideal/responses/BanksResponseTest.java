@@ -1,6 +1,11 @@
-package nl.stil4m.ideal.domain;
+package nl.stil4m.ideal.responses;
 
 import com.google.common.collect.Lists;
+
+import nl.stil4m.ideal.domain.Bank;
+import nl.stil4m.ideal.domain.Item;
+import nl.stil4m.ideal.responses.BanksResponse;
+
 import org.junit.Before;
 import org.junit.Test;
 

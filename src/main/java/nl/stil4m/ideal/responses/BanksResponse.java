@@ -1,5 +1,6 @@
-package nl.stil4m.ideal.domain;
+package nl.stil4m.ideal.responses;
 
+import nl.stil4m.ideal.domain.Bank;
 import nl.stil4m.ideal.responses.Response;
 
 import javax.xml.bind.annotation.XmlElement;

@@ -8,7 +8,8 @@ public class CheckOrder {
     private String currency;
     private Boolean payed;
     private String message;
-    private String status;
+    private Status status;
+    private Consumer consumer;
 
     public String getTransactionId() {
         return transactionId;
@@ -55,12 +56,21 @@ public class CheckOrder {
         this.message = message;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
     @XmlElement(name = "status")
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Consumer getConsumer() {
+        return consumer;
+    }
+
+    @XmlElement(name = "consumer")
+    public void setConsumer(Consumer consumer) {
+        this.consumer = consumer;
     }
 }

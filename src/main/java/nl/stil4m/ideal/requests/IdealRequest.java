@@ -1,28 +1,30 @@
 package nl.stil4m.ideal.requests;
 
-import com.google.common.collect.Maps;
 import nl.stil4m.ideal.responses.Response;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public abstract class IdealRequest<T extends Response> extends Request<T> {
+public abstract class IdealRequest<T extends Response> {
 
-    private boolean testMode;
+    private final Map<String, String> data;
 
-    protected IdealRequest(Class<T> responseClazz) {
-        super(responseClazz);
-    }
+    private Class<T> responseClazz;
 
-    public void setTestMode(boolean testMode) {
-        this.testMode = testMode;
-    }
-
-    @Override
-    public Map<String, String> getData() {
-        Map<String, String> data = Maps.newHashMap();
+    protected IdealRequest(Class<T> responseClazz, boolean testMode) {
+        this.responseClazz = responseClazz;
+        this.data = new HashMap<String, String>();
         if (testMode) {
-            data.put("testmode", "true");
+            this.data.put("testMode", "true");
         }
+    }
+
+    public final Map<String, String> getData() {
         return data;
     }
+
+    public Class<T> getResponseClass() {
+        return responseClazz;
+    }
+
 }

@@ -1,24 +1,20 @@
 package nl.stil4m.ideal.requests;
 
-import nl.stil4m.ideal.domain.BanksResponse;
+import nl.stil4m.ideal.responses.BanksResponse;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BanksRequest extends IdealRequest<BanksResponse> {
 
-    public BanksRequest() {
-        super(BanksResponse.class);
+    private static final Map<String, String> defaultMap = new HashMap<String, String>();
+
+    static {
+        defaultMap.put("a", "banklist");
     }
 
-    @Override
-    public Map<String, String> getData() {
-        Map<String, String> data = super.getData();
-        data.put("a", "banklist");
-        return data;
-    }
-
-    @Override
-    public String getPath() {
-        return "/xml/ideal";
+    public BanksRequest(boolean testMode) {
+        super(BanksResponse.class, testMode);
+        getData().putAll(defaultMap);
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<response>
+    <item type="error">
+        <errorcode>-1</errorcode>
+        <message>Did not receive a proper input value from you</message>
+    </item>
+</response>
