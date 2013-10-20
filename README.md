@@ -1,9 +1,39 @@
 # iDeal API
 
+
+## Dependencies
+
+* `org.apache.httpcomponents:httpclient:4.3.1`
+
+
+## Maven
+This library is available on my [personal maven repository](https://github.com/stil4m/maven-repository).
+
+### Repository
+```
+<repository>
+    <id>stil4m-releases</id>
+    <name>stil4m-releases</name>
+    <url>https://github.com/stil4m/maven-repository/raw/master/releases/</url>
+</repository>
+```
+
+### Artifact
+```
+<depencency>
+    <groupId>nl.stil4m</groupId>
+    <artifactId>ideal-api</artifactId>
+    <version>1.0.0</version>
+</depencency>
+```
+
 ## Setup
 To use the iDeal API you should create a instance of `Ideal`.
 
-The `Ideal` constructor requires at least one argument that is of type `RequestExecutor`. You can use a `DefaultRequestExecutor` instance.
+The `Ideal` constructor requires two arguments, your partner id and an instance that is of the type `RequestExecutor`. The `RequestExecutor` performs the actual requests to the iDeal system. You can configure this instance to use another endpoint for testing purposes.
+
+## Test mode
+To enable testmode you can call the `setTestMode` method on the iDeal instance.
 
 
 ## Flow
@@ -18,7 +48,8 @@ To retrieve the banks, you can `execute` a `BanksRequest` on the `Ideal` instanc
 
 ```
 Ideal ideal = new Ideal(...)
-BanksResponse banksResponse = ideal.execute(new BanksRequest());
+...
+List<Bank> banks = ideal.getBanks();
 ```
 
 This will result in a list of banks containing a name and a id.
@@ -30,50 +61,19 @@ To create a payment, you can `execute` a `FetchModeRequest` on the `Ideal` insta
 
 ```
 Ideal ideal = new Ideal(...)
-FetchModeRequest request = new FetchModeRequest(partnerId, amount, bankId, description, reportUrl, returnUrl) {
-FetchModeResponse fetchModeResponse = ideal.execute(request);
+...
+Order order = ideal.createPayment(123, "EUR", banks.get(0).getBankId(), "System Test", "http://www.example.org", "http://www.google.com");
 ```
-The table below will provide more infomation about the parameters that are used in the `FetchModeRequest`.
-
-<table>
-  <tr>
-    <th>Argument</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>partnerId</td>
-    <td>The partnerId is a ID provided by iDeal that identifies the API consumer.</td>
-  </tr>
-  <tr>
-    <td>amount</td>
-    <td>The amount in Euro cents.</td>
-  </tr>
-  <tr>
-    <td>bankId</td>
-    <td>The reference to the bank that should process the payment. The allowed banks can be requested with a `BanksRequest`.</td>
-  </tr>
-  <tr>
-    <td>description</td>
-    <td>The description that will be noted on the bank transaction.</td>
-  </tr>
-  <tr>
-    <td>reportUrl</td>
-    <td>A url that will be called with a HTTP GET request when the status of the payment changes from `Open` to another state. This new state can be obtained by performing a `CheckRequest`. Ideal does not add the state as a argument to the HTTP GET request. The only argument is the `transactionId`.</td>
-  </tr>
-  <tr>
-    <td>returnUrl</td>
-    <td>This url will be used to redirect the clients browser after the customer fullfills the payment at the bank.</td>
-  </tr>
-</table>
-
-
 
 ### Check Payment Status
 
-`//TODO`
-
-## Testing
-To interact with iDeal in a test mode, you can set `testMode` to `true` on every request.
+To check the status of a payment you must use the transaction id that was returned in the `Order` (the result of the create payment).
+ 
+```
+Ideal ideal = new Ideal(...)
+...
+CheckOrder result = ideal.checkPayment(order.getTransactionId());
+```
 
 ## Reference
 
