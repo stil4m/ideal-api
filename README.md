@@ -44,7 +44,6 @@ To enable testmode you can call the `setTestMode` method on the iDeal instance.
 
 
 ### Retrieve banks
-To retrieve the banks, you can `execute` a `BanksRequest` on the `Ideal` instance.
 
 ```
 Ideal ideal = new Ideal(...)
@@ -52,12 +51,9 @@ Ideal ideal = new Ideal(...)
 List<Bank> banks = ideal.getBanks();
 ```
 
-This will result in a list of banks containing a name and a id.
+This will result in a list of banks containing a name and an id.
 
 ### Create Payment
-
-To create a payment, you can `execute` a `FetchModeRequest` on the `Ideal` instance.
-
 
 ```
 Ideal ideal = new Ideal(...)
