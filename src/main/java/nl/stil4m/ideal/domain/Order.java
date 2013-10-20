@@ -2,12 +2,14 @@ package nl.stil4m.ideal.domain;
 
 import javax.xml.bind.annotation.XmlElement;
 
+import java.net.URL;
+
 public class Order {
 
     private String transactionId;
     private Integer amount;
     private String currency;
-    private String url;
+    private URL url;
     private String message;
 
     public String getTransactionId() {
@@ -37,12 +39,12 @@ public class Order {
         this.currency = currency;
     }
 
-    public String getUrl() {
+    public URL getUrl() {
         return url;
     }
 
     @XmlElement(name = "URL")
-    public void setUrl(String url) {
+    public void setUrl(URL url) {
         this.url = url;
     }
 

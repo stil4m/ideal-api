@@ -36,9 +36,9 @@ public class Ideal {
         return response.getBanks();
     }
 
-    public Order createPayment(Integer amount, String bankId, String description, String reportUrl, String returnUrl) throws FailedRequestException {
+    public Order createPayment(Integer amount, String currency, String bankId, String description, String reportUrl, String returnUrl) throws FailedRequestException {
         FetchModeRequest fetchModeRequest = new FetchModeRequest(
-                partnerId, amount, bankId, description, reportUrl, returnUrl, null
+                partnerId, amount, currency, bankId, description, reportUrl, returnUrl, null
         );
 
         FetchModeResponse response = requestExecutor.execute(fetchModeRequest);

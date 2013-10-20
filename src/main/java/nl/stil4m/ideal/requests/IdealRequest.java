@@ -13,9 +13,9 @@ public abstract class IdealRequest<T extends Response> {
 
     protected IdealRequest(Class<T> responseClazz, boolean testMode) {
         this.responseClazz = responseClazz;
-        this.data = new HashMap<String, String>();
+        this.data = new HashMap<>();
         if (testMode) {
-            this.data.put("testMode", "true");
+            this.data.put("testmode", "true");
         }
     }
 

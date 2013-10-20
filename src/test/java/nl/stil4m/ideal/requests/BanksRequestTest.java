@@ -14,9 +14,9 @@ public class BanksRequestTest {
 
     @Test
     public void testConstructionWithTestMode() {
-        Map<String, String> expected = new HashMap<String, String>();
+        Map<String, String> expected = new HashMap<>();
         expected.put("a", "banklist");
-        expected.put("testMode", "true");
+        expected.put("testmode", "true");
 
         BanksRequest banksRequest = new BanksRequest(true);
         assertThat(banksRequest.getData(), is(expected));
@@ -25,7 +25,7 @@ public class BanksRequestTest {
 
     @Test
     public void testConstructionWithoutTestMode() {
-        Map<String, String> expected = new HashMap<String, String>();
+        Map<String, String> expected = new HashMap<>();
         expected.put("a", "banklist");
 
         BanksRequest banksRequest = new BanksRequest(false);

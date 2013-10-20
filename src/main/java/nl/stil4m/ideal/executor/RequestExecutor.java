@@ -7,10 +7,9 @@ import nl.stil4m.ideal.requests.IdealRequest;
 import nl.stil4m.ideal.responses.Response;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -27,24 +26,28 @@ public class RequestExecutor {
     private final String scheme;
     private final String path;
     private final String url;
+    private final HttpClient httpClient;
 
-    public RequestExecutor() {
-        this.scheme = IdealConstants.MOLLIE_IDEAL_SCHEME;
-        this.url = IdealConstants.MOLLIE_IDEAL_URL;
-        this.path = IdealConstants.MOLLIE_IDEAL_PATH;
+    public RequestExecutor(HttpClient httpClient) {
+        this(
+                IdealConstants.MOLLIE_IDEAL_SCHEME,
+                IdealConstants.MOLLIE_IDEAL_URL,
+                IdealConstants.MOLLIE_IDEAL_PATH,
+                httpClient
+        );
     }
 
-    public RequestExecutor(String scheme, String url, String path) {
+    public RequestExecutor(String scheme, String url, String path, HttpClient httpClient) {
         this.scheme = scheme;
         this.url = url;
         this.path = path;
+        this.httpClient = httpClient;
     }
 
     public <T extends Response> T execute(IdealRequest<T> request) throws FailedRequestException {
         try {
             HttpGet get = buildHttpRequest(request);
-            DefaultHttpClient client = new DefaultHttpClient();
-            HttpResponse httpResponse = client.execute(get);
+            HttpResponse httpResponse = httpClient.execute(get);
 
             JAXBContext jaxbContext = JAXBContext.newInstance(request.getResponseClass());
 
@@ -54,13 +57,7 @@ public class RequestExecutor {
                 throw new FailedRequestException(request, response);
             }
             return response;
-        } catch (ClientProtocolException e) {
-            throw new RequestExecutorException(e);
-        } catch (IOException e) {
-            throw new RequestExecutorException(e);
-        } catch (JAXBException e) {
-            throw new RequestExecutorException(e);
-        } catch (URISyntaxException e) {
+        } catch (IOException | JAXBException | URISyntaxException e) {
             throw new RequestExecutorException(e);
         }
     }

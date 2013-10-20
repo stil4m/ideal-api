@@ -10,8 +10,8 @@ public class CheckRequest extends IdealRequest<CheckResponse> {
         super(CheckResponse.class, testMode);
         Map<String, String> data = getData();
         data.put("a", "check");
-        data.put("partnerId", partnerId);
-        data.put("transactionId", transactionId);
+        data.put("partnerid", partnerId);
+        data.put("transaction_id", transactionId);
     }
 
 }

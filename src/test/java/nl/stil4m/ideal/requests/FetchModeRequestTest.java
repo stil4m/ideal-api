@@ -23,8 +23,9 @@ public class FetchModeRequestTest {
         expected.put("reporturl", "rep");
         expected.put("returnurl", "ret");
         expected.put("profile_key", "prof");
+        expected.put("currency", "EUR");
 
-        FetchModeRequest fetchModeRequest = new FetchModeRequest("pid", 123, "0999", "desc", "rep", "ret", "prof");
+        FetchModeRequest fetchModeRequest = new FetchModeRequest("pid", 123, "EUR", "0999", "desc", "rep", "ret", "prof");
         assertThat(fetchModeRequest.getData(), is(expected));
         assertThat(fetchModeRequest.getResponseClass() == FetchModeResponse.class, is(true));
     }
@@ -39,8 +40,10 @@ public class FetchModeRequestTest {
         expected.put("description", "desc");
         expected.put("reporturl", "rep");
         expected.put("returnurl", "ret");
+        expected.put("currency", "EUR");
 
-        FetchModeRequest fetchModeRequest = new FetchModeRequest("pid", 123, "0999", "desc", "rep", "ret", null);
+
+        FetchModeRequest fetchModeRequest = new FetchModeRequest("pid", 123, "EUR", "0999", "desc", "rep", "ret", null);
         assertThat(fetchModeRequest.getData(), is(expected));
         assertThat(fetchModeRequest.getResponseClass() == FetchModeResponse.class, is(true));
     }
