@@ -1,6 +1,10 @@
 # iDeal API
 
 
+## License
+
+The source code is licensed under the `Apache License, Version 2.0`.
+
 ## Dependencies
 
 * `org.apache.httpcomponents:httpclient:4.3.1`
