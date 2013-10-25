@@ -45,7 +45,7 @@ public class Ideal {
         this.testMode = testMode;
     }
     
-    public void setProfileKey(string profileKey) {
+    public void setProfileKey(String profileKey) {
         this.profileKey = profileKey;
     }
 
