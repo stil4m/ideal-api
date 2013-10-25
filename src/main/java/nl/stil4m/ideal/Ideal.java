@@ -34,6 +34,7 @@ public class Ideal {
     private final RequestExecutor requestExecutor;
 
     private boolean testMode = false;
+    private String profileKey;
 
     public Ideal(String partnerId, RequestExecutor requestExecutor) {
         this.partnerId = partnerId;
@@ -42,6 +43,10 @@ public class Ideal {
 
     public void setTestMode(boolean testMode) {
         this.testMode = testMode;
+    }
+    
+    public void setProfileKey(string profileKey) {
+        this.profileKey = profileKey;
     }
 
     public List<Bank> getBanks() throws FailedRequestException {
@@ -52,7 +57,7 @@ public class Ideal {
 
     public Order createPayment(Integer amount, String currency, String bankId, String description, String reportUrl, String returnUrl) throws FailedRequestException {
         FetchModeRequest fetchModeRequest = new FetchModeRequest(
-                partnerId, amount, currency, bankId, description, reportUrl, returnUrl, null
+                partnerId, amount, currency, bankId, description, reportUrl, returnUrl, profileKey
         );
 
         FetchModeResponse response = requestExecutor.execute(fetchModeRequest);
