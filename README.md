@@ -1,3 +1,10 @@
+
+#Important note:
+
+This library is deprecated. Please use the [mollie-api](https://github.com/stil4m/mollie-api).
+
+---
+
 # iDeal API
 
 
